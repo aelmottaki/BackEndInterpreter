@@ -1,10 +1,10 @@
-package com.oracle.pythoninterpreter.services.impl;
+package com.oracle.pythoninterpreter.interpreters.impl;
 
 import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
+import com.oracle.pythoninterpreter.parsers.CodeExtractor;
 import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
 import com.oracle.pythoninterpreter.pojos.ExecutionResult;
-import com.oracle.pythoninterpreter.services.CodeFormatter;
-import com.oracle.pythoninterpreter.services.CodeInterpreter;
+import com.oracle.pythoninterpreter.interpreters.CodeInterpreter;
 import org.python.util.PythonInterpreter;
 
 import java.io.ByteArrayOutputStream;
@@ -14,13 +14,13 @@ public class PythonInterpreterImpl implements CodeInterpreter {
 	
 	private PythonInterpreter pythonInterpreter;
 	
-	private CodeFormatter codeFormatter;
+	private CodeExtractor codeExtractor;
 	
 	@Override
 	public ExecutionResult execute(CodeToBeExecuted codeToBeExecuted) throws CodeFormatException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		pythonInterpreter.setOut(baos);
-		pythonInterpreter.exec(codeFormatter.format(codeToBeExecuted));
+		pythonInterpreter.exec(codeExtractor.format(codeToBeExecuted));
 		ExecutionResult executionResult = new ExecutionResult();
 		executionResult.setResult(new String(baos.toByteArray()).trim());
 		return executionResult;
@@ -34,11 +34,11 @@ public class PythonInterpreterImpl implements CodeInterpreter {
 		this.pythonInterpreter = pythonInterpreter;
 	}
 	
-	public CodeFormatter getCodeFormatter() {
-		return codeFormatter;
+	public CodeExtractor getCodeFormatter() {
+		return codeExtractor;
 	}
 	
-	public void setCodeFormatter(CodeFormatter codeFormatter) {
-		this.codeFormatter = codeFormatter;
+	public void setCodeExtractor(CodeExtractor codeExtractor) {
+		this.codeExtractor = codeExtractor;
 	}
 }

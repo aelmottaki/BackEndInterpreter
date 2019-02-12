@@ -3,7 +3,7 @@ package com.oracle.pythoninterpreter.controllers;
 
 import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
 import com.oracle.pythoninterpreter.pojos.ExecutionResult;
-import com.oracle.pythoninterpreter.services.impl.InterpreterFactory;
+import com.oracle.pythoninterpreter.interpreters.impl.InterpreterFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.Callable;

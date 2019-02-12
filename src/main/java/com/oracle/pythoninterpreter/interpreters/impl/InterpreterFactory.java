@@ -1,20 +1,20 @@
-package com.oracle.pythoninterpreter.services.impl;
+package com.oracle.pythoninterpreter.interpreters.impl;
 
 
 import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
+import com.oracle.pythoninterpreter.parsers.CodeExtractor;
 import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
-import com.oracle.pythoninterpreter.services.CodeFormatter;
-import com.oracle.pythoninterpreter.services.CodeInterpreter;
+import com.oracle.pythoninterpreter.interpreters.CodeInterpreter;
 
 import java.util.Map;
 
 public class InterpreterFactory {
 	private Map<String, CodeInterpreter> interpreters;
 	private CodeInterpreter defaultInterpreter;
-	private CodeFormatter codeFormatter;
+	private CodeExtractor codeExtractor;
 	
 	public CodeInterpreter getInterpreter(CodeToBeExecuted codeToBeExecuted) throws CodeFormatException {
-		String languagePrefix = codeFormatter.getPrefix(codeToBeExecuted);
+		String languagePrefix = codeExtractor.getPrefix(codeToBeExecuted);
 		if(interpreters.containsKey(languagePrefix)){
 			return interpreters.get(languagePrefix);
 		}
@@ -22,8 +22,8 @@ public class InterpreterFactory {
 	}
 	
 	
-	public void setCodeFormatter(CodeFormatter codeFormatter) {
-		this.codeFormatter = codeFormatter;
+	public void setCodeExtractor(CodeExtractor codeExtractor) {
+		this.codeExtractor = codeExtractor;
 	}
 	
 	public void setInterpreters(Map<String, CodeInterpreter> interpreters) {

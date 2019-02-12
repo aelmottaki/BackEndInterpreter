@@ -1,13 +1,13 @@
-package com.oracle.pythoninterpreter.services.impl;
+package com.oracle.pythoninterpreter.parsers.impl;
 
 import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
-import com.oracle.pythoninterpreter.services.CodeFormatter;
+import com.oracle.pythoninterpreter.parsers.CodeExtractor;
 import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
 import org.apache.commons.lang.StringUtils;
 
 
 
-public class CodeFormatterImpl implements CodeFormatter {
+public class CodeExtractorImpl implements CodeExtractor {
 	
 	private static final String SEPARATOR = " ";
 	private static final String EMPTY = "";

@@ -1,8 +1,8 @@
-package com.oracle.pythoninterpreter.services.impl;
+package com.oracle.pythoninterpreter.interpreters.impl;
 
 import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
 import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
-import com.oracle.pythoninterpreter.services.CodeInterpreter;
+import com.oracle.pythoninterpreter.interpreters.CodeInterpreter;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;

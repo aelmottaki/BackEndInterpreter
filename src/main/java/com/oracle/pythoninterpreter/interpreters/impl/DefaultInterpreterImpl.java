@@ -1,8 +1,8 @@
-package com.oracle.pythoninterpreter.services.impl;
+package com.oracle.pythoninterpreter.interpreters.impl;
 
 import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
 import com.oracle.pythoninterpreter.pojos.ExecutionResult;
-import com.oracle.pythoninterpreter.services.CodeInterpreter;
+import com.oracle.pythoninterpreter.interpreters.CodeInterpreter;
 
 
 public class DefaultInterpreterImpl implements CodeInterpreter {
