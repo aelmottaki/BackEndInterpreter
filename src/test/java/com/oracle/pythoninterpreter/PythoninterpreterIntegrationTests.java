@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(ExecutionController.class)
 @ComponentScan(basePackages = "com.oracle.pythoninterpreter")
-public class PythoninterpreterApplicationTests {
+public class PythoninterpreterIntegrationTests {
 	@Autowired
 	private MockMvc mockMvc;
 
