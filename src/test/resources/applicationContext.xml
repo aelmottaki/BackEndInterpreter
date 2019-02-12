@@ -16,24 +16,31 @@
     </bean>
 
     <alias name="javaInterpreterImpl" alias="javaInterpreter"/>
-    <bean class="com.oracle.pythoninterpreter.interpreters.impl.JavaInterpreterImpl" name="javaInterpreterImpl">
+    <bean class="com.oracle.pythoninterpreter.interpreters.impl.JavaInterpreterImpl" name="javaInterpreterImpl" >
         <aop:scoped-proxy proxy-target-class="false"/>
     </bean>
 
     <!--  interpreter factory declaration -->
-    <bean class="com.oracle.pythoninterpreter.interpreters.impl.InterpreterFactory" name="interpreterFactory" >
+    <bean class="com.oracle.pythoninterpreter.interpreters.impl.InterpreterFactory" name="interpreterFactory">
         <property name="interpreters">
             <map>
                 <entry key="%python" value-ref="pythonInterpreter"/>
                 <entry key="%java" value-ref="javaInterpreter"/>
             </map>
         </property>
-        <property name="codeExtractor" ref="codeExtractor"/>
+        <property name="langPrefixPicker" ref="langPrefixPicker"/>
     </bean>
 
     <!-- code formatter declaration -->
-    <bean class="com.oracle.pythoninterpreter.parsers.impl.CodeExtractorImpl" name="codeExtractor">
-        <property name="regexFormat" value="%[a-zA-Z]{3,6}\s.*"/>
+    <alias name="codeExtractorImpl" alias="codeExtractor"/>
+    <bean class="com.oracle.pythoninterpreter.parsers.impl.CodeExtractorImpl" name="codeExtractorImpl"/>
+
+    <alias name="langPrefixPickerImpl" alias="langPrefixPicker"/>
+    <bean class="com.oracle.pythoninterpreter.parsers.impl.LangPrefixPickerImpl" name="langPrefixPickerImpl"/>
+
+    <alias name="codeValidatorImpl" alias="codeValidator"/>
+    <bean class="com.oracle.pythoninterpreter.validators.impl.CodeValidatorImpl" name="codeValidatorImpl">
+        <constructor-arg index="0" value="%[a-zA-Z]{3,10}\s.*"/>
     </bean>
 
 

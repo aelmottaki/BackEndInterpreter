@@ -14,13 +14,4 @@ public class CodeExtractorTest {
 		code.setCode("%python print(test) ");
 		Assertions.assertThat("print(test)").isEqualToIgnoringCase(codeFormatter.getExtractedCode(code));
 	}
-	
-	@Test(expected = CodeFormatException.class)
-	public void shouldThrowException() throws CodeFormatException {
-		CodeExtractorImpl codeFormatter = new CodeExtractorImpl();
-		Code code = new Code();
-		code.setCode("python print(test) ");
-		Assertions.assertThat("print(test)").isEqualToIgnoringCase(codeFormatter.getExtractedCode(code));
-	}
-	
 }
