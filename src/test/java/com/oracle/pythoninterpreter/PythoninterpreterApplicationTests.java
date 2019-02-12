@@ -101,7 +101,7 @@ public class PythoninterpreterApplicationTests {
 		
 		
 		mockMvc.perform(MockMvcRequestBuilders.asyncDispatch(mvcResult)).andExpect(status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value((ErrorController.CODE_FORMAT_ERROR_CHECK_CONTRACT_FORMAT_PLEASE)));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value((ErrorController.NO_INTERPRETER_FOUND_EXCEPTION)));
 	}
 	
 	@Test

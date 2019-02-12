@@ -28,13 +28,15 @@
                 <entry key="%java" value-ref="javaInterpreter"/>
             </map>
         </property>
-        <property name="codeExtractor" ref="codeExtractor"/>
+        <property name="langPrefixPicker" ref="langPrefixPicker"/>
     </bean>
 
     <!-- code formatter declaration -->
-    <bean class="com.oracle.pythoninterpreter.parsers.impl.CodeExtractorImpl" name="codeExtractor">
-        <property name="regexFormat" value="%[a-zA-Z]{3,10}\s.*"/>
-    </bean>
+    <alias name="codeExtractorImpl" alias="codeExtractor"/>
+    <bean class="com.oracle.pythoninterpreter.parsers.impl.CodeExtractorImpl" name="codeExtractorImpl"/>
+
+    <alias name="langPrefixPickerImpl" alias="langPrefixPicker"/>
+    <bean class="com.oracle.pythoninterpreter.parsers.impl.LangPrefixPickerImpl" name="langPrefixPickerImpl"/>
     
     
 </beans>

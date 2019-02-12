@@ -12,7 +12,7 @@ public class CodeExtractorTest {
 		CodeExtractorImpl codeFormatter = new CodeExtractorImpl();
 		Code code = new Code();
 		code.setCode("%python print(test) ");
-		Assertions.assertThat("print(test)").isEqualToIgnoringCase(codeFormatter.format(code));
+		Assertions.assertThat("print(test)").isEqualToIgnoringCase(codeFormatter.getExtractedCode(code));
 	}
 	
 	@Test(expected = CodeFormatException.class)
@@ -20,7 +20,7 @@ public class CodeExtractorTest {
 		CodeExtractorImpl codeFormatter = new CodeExtractorImpl();
 		Code code = new Code();
 		code.setCode("python print(test) ");
-		Assertions.assertThat("print(test)").isEqualToIgnoringCase(codeFormatter.format(code));
+		Assertions.assertThat("print(test)").isEqualToIgnoringCase(codeFormatter.getExtractedCode(code));
 	}
 	
 }

@@ -19,7 +19,7 @@ import java.util.Date;
 @RestController
 public class ErrorController {
 	
-	public static final String CODE_FORMAT_ERROR_CHECK_CONTRACT_FORMAT_PLEASE = "Code Format Error ! check specified format please .";
+	public static final String CODE_FORMAT_ERROR_CHECK_CONTRACT_FORMAT_PLEASE = "Code Format Error ! check specified getExtractedCode please .";
 	public static final String CODE_SYNTAX_ERROR_CHECK_YOUR_CODE_PLEASE = "Code Syntax error ! check your code please .";
 	private static final String YOUR_CODE_TAKE_A_LOT_OF_TIME_TO_BE_EXECUTED = "Your code take a lot of time to be executed !";
 	public static final String NO_INTERPRETER_FOUND_EXCEPTION = "No Interpreter Found Exception !";

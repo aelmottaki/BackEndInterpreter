@@ -20,7 +20,7 @@ public class PythonInterpreterImpl implements CodeInterpreter {
 	public ExecutionResult execute(Code code) throws CodeFormatException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		pythonInterpreter.setOut(baos);
-		pythonInterpreter.exec(codeExtractor.format(code));
+		pythonInterpreter.exec(codeExtractor.getExtractedCode(code));
 		ExecutionResult executionResult = new ExecutionResult();
 		executionResult.setResult(new String(baos.toByteArray()).trim());
 		return executionResult;
