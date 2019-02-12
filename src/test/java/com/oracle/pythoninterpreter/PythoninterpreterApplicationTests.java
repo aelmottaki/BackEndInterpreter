@@ -89,7 +89,7 @@ public class PythoninterpreterApplicationTests {
 	}
 
 	@Test()
-	public void shouldStatusBe400IfInterpreterNotFound() throws Exception {
+	public void shouldStatusBe400IfSyntaxError() throws Exception {
 		Code code = new Code();
 		code.setCode("print a");
 		MvcResult mvcResult =mockMvc.perform( MockMvcRequestBuilders
@@ -101,9 +101,22 @@ public class PythoninterpreterApplicationTests {
 		
 		
 		mockMvc.perform(MockMvcRequestBuilders.asyncDispatch(mvcResult)).andExpect(status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value((ErrorController.NO_INTERPRETER_FOUND_EXCEPTION)));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value((ErrorController.CODE_FORMAT_ERROR_CHECK_CONTRACT_FORMAT_PLEASE)));
 	}
-	
+	public void shouldStatusBe400IfInterpreterNotFound() throws Exception {
+		Code code = new Code();
+		code.setCode("%dotenet print a");
+		MvcResult mvcResult =mockMvc.perform( MockMvcRequestBuilders
+				.post("/execute")
+				.content(asJsonString(code))
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(request().asyncStarted()).andReturn();
+
+
+		mockMvc.perform(MockMvcRequestBuilders.asyncDispatch(mvcResult)).andExpect(status().isBadRequest())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value((ErrorController.CODE_SYNTAX_ERROR_CHECK_YOUR_CODE_PLEASE)));
+	}
 	@Test
 	public void shouldRememberVariableIfSameSession() throws Exception {
 		MockHttpSession httpSession = new MockHttpSession();

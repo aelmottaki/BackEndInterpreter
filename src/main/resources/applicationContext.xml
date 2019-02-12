@@ -37,6 +37,11 @@
 
     <alias name="langPrefixPickerImpl" alias="langPrefixPicker"/>
     <bean class="com.oracle.pythoninterpreter.parsers.impl.LangPrefixPickerImpl" name="langPrefixPickerImpl"/>
+
+    <alias name="codeValidatorImpl" alias="codeValidator"/>
+    <bean class="com.oracle.pythoninterpreter.validators.impl.CodeValidatorImpl" name="codeValidatorImpl">
+        <constructor-arg index="0" value="%[a-zA-Z]{3,10}\s.*"/>
+    </bean>
     
     
 </beans>
