@@ -2,8 +2,6 @@ package com.oracle.pythoninterpreter.parsers.impl;
 
 import com.oracle.pythoninterpreter.pojos.Code;
 import com.oracle.pythoninterpreter.parsers.CodeExtractor;
-import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
-import org.apache.commons.lang.StringUtils;
 
 
 

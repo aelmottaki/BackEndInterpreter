@@ -1,9 +1,7 @@
 package com.oracle.pythoninterpreter.parsers.impl;
 
-import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
 import com.oracle.pythoninterpreter.parsers.LangPrefixPicker;
 import com.oracle.pythoninterpreter.pojos.Code;
-import org.apache.commons.lang.StringUtils;
 
 public class LangPrefixPickerImpl implements LangPrefixPicker
 {
