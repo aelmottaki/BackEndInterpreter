@@ -1,9 +1,9 @@
-package com.pythoninterpreter.pythoninterpreter;
+package com.oracle.pythoninterpreter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pythoninterpreter.pythoninterpreter.controllers.ErrorController;
-import com.pythoninterpreter.pythoninterpreter.controllers.ExecutionController;
-import com.pythoninterpreter.pythoninterpreter.pojos.CodeToBeExecuted;
+import com.oracle.pythoninterpreter.controllers.ErrorController;
+import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
+import com.oracle.pythoninterpreter.controllers.ExecutionController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ExecutionController.class)
-@ComponentScan(basePackages = "com.pythoninterpreter.pythoninterpreter")
+@ComponentScan(basePackages = "com.oracle.pythoninterpreter")
 public class PythoninterpreterApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;

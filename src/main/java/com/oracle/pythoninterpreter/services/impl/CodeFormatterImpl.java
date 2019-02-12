@@ -1,8 +1,8 @@
-package com.pythoninterpreter.pythoninterpreter.services.impl;
+package com.oracle.pythoninterpreter.services.impl;
 
-import com.pythoninterpreter.pythoninterpreter.exceptions.CodeFormatException;
-import com.pythoninterpreter.pythoninterpreter.pojos.CodeToBeExecuted;
-import com.pythoninterpreter.pythoninterpreter.services.CodeFormatter;
+import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
+import com.oracle.pythoninterpreter.services.CodeFormatter;
+import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
 import org.apache.commons.lang.StringUtils;
 
 

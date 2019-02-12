@@ -1,4 +1,4 @@
-package com.pythoninterpreter.pythoninterpreter.exceptions;
+package com.oracle.pythoninterpreter.exceptions;
 
 public class CodeFormatException extends Exception {
 	public CodeFormatException(String message) {

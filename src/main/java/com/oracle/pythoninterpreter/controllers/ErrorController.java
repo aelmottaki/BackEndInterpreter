@@ -1,8 +1,8 @@
-package com.pythoninterpreter.pythoninterpreter.controllers;
+package com.oracle.pythoninterpreter.controllers;
 
 
-import com.pythoninterpreter.pythoninterpreter.exceptions.CodeFormatException;
-import com.pythoninterpreter.pythoninterpreter.pojos.ErrorDetails;
+import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
+import com.oracle.pythoninterpreter.pojos.ErrorDetails;
 import org.python.core.PyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class ErrorController {
 	
 	public static final String CODE_FORMAT_ERROR_CHECK_CONTRACT_FORMAT_PLEASE = "Code Format Error ! check specified format please .";
 	public static final String CODE_SYNTAX_ERROR_CHECK_YOUR_CODE_PLEASE = "Code Syntax error ! check your code please .";
-	public static final String YOUR_CODE_TAKE_A_LOT_OF_TIME_TO_BE_EXECUTED = "Your code take a lot of time to be executed !";
+	private static final String YOUR_CODE_TAKE_A_LOT_OF_TIME_TO_BE_EXECUTED = "Your code take a lot of time to be executed !";
 	
 	@ExceptionHandler(CodeFormatException.class)
 	public final ResponseEntity<ErrorDetails> handleCodeFormatException(CodeFormatException ex, WebRequest request) {

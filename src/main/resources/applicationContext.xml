@@ -9,24 +9,24 @@
     <bean class="org.python.util.PythonInterpreter" name="embededPythonInterpreter" scope="prototype"/>
             
     <alias name="pythonInterpreterImpl" alias="pythonInterpreter"/>
-    <bean class="com.pythoninterpreter.pythoninterpreter.services.impl.PythonInterpreterImpl" name="pythonInterpreterImpl" scope="session">
+    <bean class="com.oracle.pythoninterpreter.services.impl.PythonInterpreterImpl" name="pythonInterpreterImpl" scope="session">
         <aop:scoped-proxy proxy-target-class="false"/>
         <property name="pythonInterpreter" ref="embededPythonInterpreter"/>
         <property name="codeFormatter" ref="codeFormatter"/>
     </bean>
     
     <alias name="DefaultInterpreterImpl" alias="defaultInterpreter"/>
-    <bean class="com.pythoninterpreter.pythoninterpreter.services.impl.DefaultInterpreterImpl" name="DefaultInterpreterImpl" scope="session">
+    <bean class="com.oracle.pythoninterpreter.services.impl.DefaultInterpreterImpl" name="DefaultInterpreterImpl" scope="session">
         <aop:scoped-proxy proxy-target-class="false"/>
     </bean>
 
     <alias name="javaInterpreterImpl" alias="javaInterpreter"/>
-    <bean class="com.pythoninterpreter.pythoninterpreter.services.impl.JavaInterpreterImpl" name="javaInterpreterImpl" scope="session">
+    <bean class="com.oracle.pythoninterpreter.services.impl.JavaInterpreterImpl" name="javaInterpreterImpl" scope="session">
         <aop:scoped-proxy proxy-target-class="false"/>
     </bean>
 
     <!--  interpreter factory declaration -->
-    <bean class="com.pythoninterpreter.pythoninterpreter.services.impl.InterpreterFactory" name="interpreterFactory" scope="singleton">
+    <bean class="com.oracle.pythoninterpreter.services.impl.InterpreterFactory" name="interpreterFactory">
         <property name="interpreters">
             <map>
                 <entry key="%python" value-ref="pythonInterpreter"/>
@@ -38,7 +38,7 @@
     </bean>
 
     <!-- code formatter declaration -->
-    <bean class="com.pythoninterpreter.pythoninterpreter.services.impl.CodeFormatterImpl" name="codeFormatter">
+    <bean class="com.oracle.pythoninterpreter.services.impl.CodeFormatterImpl" name="codeFormatter">
         <property name="regexFormat" value="%[a-zA-Z]{3,10}\s.*"/>
     </bean>
     

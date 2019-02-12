@@ -1,4 +1,4 @@
-package com.pythoninterpreter.pythoninterpreter.config;
+package com.oracle.pythoninterpreter.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;

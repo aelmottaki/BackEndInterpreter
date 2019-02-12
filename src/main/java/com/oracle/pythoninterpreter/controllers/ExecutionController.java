@@ -1,9 +1,9 @@
-package com.pythoninterpreter.pythoninterpreter.controllers;
+package com.oracle.pythoninterpreter.controllers;
 
 
-import com.pythoninterpreter.pythoninterpreter.pojos.CodeToBeExecuted;
-import com.pythoninterpreter.pythoninterpreter.pojos.ExecutionResult;
-import com.pythoninterpreter.pythoninterpreter.services.impl.InterpreterFactory;
+import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
+import com.oracle.pythoninterpreter.pojos.ExecutionResult;
+import com.oracle.pythoninterpreter.services.impl.InterpreterFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.Callable;

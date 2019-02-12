@@ -1,8 +1,8 @@
-package com.pythoninterpreter.pythoninterpreter.services;
+package com.oracle.pythoninterpreter.services;
 
-import com.pythoninterpreter.pythoninterpreter.exceptions.CodeFormatException;
-import com.pythoninterpreter.pythoninterpreter.pojos.CodeToBeExecuted;
-import com.pythoninterpreter.pythoninterpreter.services.impl.CodeFormatterImpl;
+import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
+import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
+import com.oracle.pythoninterpreter.services.impl.CodeFormatterImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.pythoninterpreter.pythoninterpreter.pojos;
+package com.oracle.pythoninterpreter.pojos;
 
 public class CodeToBeExecuted {
 	private String code;

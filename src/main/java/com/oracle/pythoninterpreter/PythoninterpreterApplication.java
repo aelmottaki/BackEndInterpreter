@@ -1,4 +1,4 @@
-package com.pythoninterpreter.pythoninterpreter;
+package com.oracle.pythoninterpreter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
