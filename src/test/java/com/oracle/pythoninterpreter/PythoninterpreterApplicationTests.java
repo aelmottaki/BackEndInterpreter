@@ -72,6 +72,22 @@ public class PythoninterpreterApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders.asyncDispatch(mvcResult)).andExpect(status().isBadRequest())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value((ErrorController.CODE_SYNTAX_ERROR_CHECK_YOUR_CODE_PLEASE)));
 	}
+
+	@Test()
+	public void shouldReturnBadRequestIfNoInterpreterFound() throws Exception {
+		CodeToBeExecuted codeToBeExecuted = new CodeToBeExecuted();
+		codeToBeExecuted.setCode("%dotenet print a");
+		MvcResult mvcResult =mockMvc.perform( MockMvcRequestBuilders
+				.post("/execute")
+				.content(asJsonString(codeToBeExecuted))
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(request().asyncStarted()).andReturn();
+
+		mockMvc.perform(MockMvcRequestBuilders.asyncDispatch(mvcResult)).andExpect(status().isBadRequest())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.message").value((ErrorController.NO_INTERPRETER_FOUND_EXCEPTION)));
+	}
+
 	@Test()
 	public void shouldStatusBe400IfInterpreterNotFound() throws Exception {
 		CodeToBeExecuted codeToBeExecuted = new CodeToBeExecuted();

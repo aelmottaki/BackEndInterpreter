@@ -15,11 +15,6 @@
         <property name="codeExtractor" ref="codeExtractor"/>
     </bean>
 
-    <alias name="DefaultInterpreterImpl" alias="defaultInterpreter"/>
-    <bean class="com.oracle.pythoninterpreter.interpreters.impl.DefaultInterpreterImpl" name="DefaultInterpreterImpl">
-        <aop:scoped-proxy proxy-target-class="false"/>
-    </bean>
-
     <alias name="javaInterpreterImpl" alias="javaInterpreter"/>
     <bean class="com.oracle.pythoninterpreter.interpreters.impl.JavaInterpreterImpl" name="javaInterpreterImpl">
         <aop:scoped-proxy proxy-target-class="false"/>
@@ -33,7 +28,6 @@
                 <entry key="%java" value-ref="javaInterpreter"/>
             </map>
         </property>
-        <property name="defaultInterpreter" ref="defaultInterpreter"/>
         <property name="codeExtractor" ref="codeExtractor"/>
     </bean>
 
