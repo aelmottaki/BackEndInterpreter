@@ -1,4 +1,4 @@
-package com.oracle.pythoninterpreter.interpreters;
+package com.oracle.pythoninterpreter.parsers;
 
 import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
 import com.oracle.pythoninterpreter.pojos.Code;
