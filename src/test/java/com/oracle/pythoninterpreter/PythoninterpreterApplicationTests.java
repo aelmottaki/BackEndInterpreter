@@ -2,7 +2,7 @@ package com.oracle.pythoninterpreter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oracle.pythoninterpreter.controllers.ErrorController;
-import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
+import com.oracle.pythoninterpreter.pojos.Code;
 import com.oracle.pythoninterpreter.controllers.ExecutionController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,11 +30,11 @@ public class PythoninterpreterApplicationTests {
 	
 	@Test
 	public void shouldReturnHelloWorld() throws Exception {
-		CodeToBeExecuted codeToBeExecuted = new CodeToBeExecuted();
-		codeToBeExecuted.setCode("%python print('hello world')");
+		Code code = new Code();
+		code.setCode("%python print('hello world')");
 		MvcResult mvcResult =mockMvc.perform( MockMvcRequestBuilders
 				.post("/execute")
-				.content(asJsonString(codeToBeExecuted))
+				.content(asJsonString(code))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(request().asyncStarted()).andReturn();
@@ -45,11 +45,11 @@ public class PythoninterpreterApplicationTests {
 	
 	@Test
 	public void shouldReturnEmpty() throws Exception {
-		CodeToBeExecuted codeToBeExecuted = new CodeToBeExecuted();
-		codeToBeExecuted.setCode("%python a=10");
+		Code code = new Code();
+		code.setCode("%python a=10");
 		MvcResult mvcResult =mockMvc.perform( MockMvcRequestBuilders
 				.post("/execute")
-				.content(asJsonString(codeToBeExecuted))
+				.content(asJsonString(code))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(request().asyncStarted()).andReturn();
@@ -60,11 +60,11 @@ public class PythoninterpreterApplicationTests {
 	
 	@Test()
 	public void shouldStatusBe400IfSyntaxCodeError() throws Exception {
-		CodeToBeExecuted codeToBeExecuted = new CodeToBeExecuted();
-		codeToBeExecuted.setCode("%python print a");
+		Code code = new Code();
+		code.setCode("%python print a");
 		MvcResult mvcResult =mockMvc.perform( MockMvcRequestBuilders
 				.post("/execute")
-				.content(asJsonString(codeToBeExecuted))
+				.content(asJsonString(code))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(request().asyncStarted()).andReturn();
@@ -75,11 +75,11 @@ public class PythoninterpreterApplicationTests {
 
 	@Test()
 	public void shouldReturnBadRequestIfNoInterpreterFound() throws Exception {
-		CodeToBeExecuted codeToBeExecuted = new CodeToBeExecuted();
-		codeToBeExecuted.setCode("%dotenet print a");
+		Code code = new Code();
+		code.setCode("%dotenet print a");
 		MvcResult mvcResult =mockMvc.perform( MockMvcRequestBuilders
 				.post("/execute")
-				.content(asJsonString(codeToBeExecuted))
+				.content(asJsonString(code))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(request().asyncStarted()).andReturn();
@@ -90,11 +90,11 @@ public class PythoninterpreterApplicationTests {
 
 	@Test()
 	public void shouldStatusBe400IfInterpreterNotFound() throws Exception {
-		CodeToBeExecuted codeToBeExecuted = new CodeToBeExecuted();
-		codeToBeExecuted.setCode("print a");
+		Code code = new Code();
+		code.setCode("print a");
 		MvcResult mvcResult =mockMvc.perform( MockMvcRequestBuilders
 				.post("/execute")
-				.content(asJsonString(codeToBeExecuted))
+				.content(asJsonString(code))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(request().asyncStarted()).andReturn();
@@ -107,12 +107,12 @@ public class PythoninterpreterApplicationTests {
 	@Test
 	public void shouldRememberVariableIfSameSession() throws Exception {
 		MockHttpSession httpSession = new MockHttpSession();
-		CodeToBeExecuted codeToBeExecuted = new CodeToBeExecuted();
-		codeToBeExecuted.setCode("%python a=10");
+		Code code = new Code();
+		code.setCode("%python a=10");
 		MvcResult mvcResult =mockMvc.perform( MockMvcRequestBuilders
 				.post("/execute")
 				.session(httpSession)
-				.content(asJsonString(codeToBeExecuted))
+				.content(asJsonString(code))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(request().asyncStarted()).andReturn();
@@ -121,11 +121,11 @@ public class PythoninterpreterApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders.asyncDispatch(mvcResult)).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.result").value(""));
 		
-		codeToBeExecuted.setCode("%python print a+10");
+		code.setCode("%python print a+10");
 		MvcResult mvcResult1 =mockMvc.perform( MockMvcRequestBuilders
 				.post("/execute")
 				.session(httpSession)
-				.content(asJsonString(codeToBeExecuted))
+				.content(asJsonString(code))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(request().asyncStarted()).andReturn();
@@ -137,12 +137,12 @@ public class PythoninterpreterApplicationTests {
 	@Test
 	public void shouldNotRememberVariableIfNotSameSession() throws Exception {
 		MockHttpSession httpSession = new MockHttpSession();
-		CodeToBeExecuted codeToBeExecuted = new CodeToBeExecuted();
-		codeToBeExecuted.setCode("%python a=10");
+		Code code = new Code();
+		code.setCode("%python a=10");
 		MvcResult mvcResult =mockMvc.perform( MockMvcRequestBuilders
 				.post("/execute")
 				.session(httpSession)
-				.content(asJsonString(codeToBeExecuted))
+				.content(asJsonString(code))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(request().asyncStarted()).andReturn();
@@ -151,12 +151,12 @@ public class PythoninterpreterApplicationTests {
 				.andExpect(MockMvcResultMatchers.jsonPath("$.result").value(""));
 		
 		// new Session
-		codeToBeExecuted.setCode("%python print a+10");
+		code.setCode("%python print a+10");
 		httpSession = new MockHttpSession();
 		MvcResult mvcResult1 =mockMvc.perform( MockMvcRequestBuilders
 				.post("/execute")
 				.session(httpSession)
-				.content(asJsonString(codeToBeExecuted))
+				.content(asJsonString(code))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(request().asyncStarted()).andReturn();

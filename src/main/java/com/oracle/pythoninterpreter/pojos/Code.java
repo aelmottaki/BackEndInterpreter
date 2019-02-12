@@ -1,6 +1,6 @@
 package com.oracle.pythoninterpreter.pojos;
 
-public class CodeToBeExecuted {
+public class Code {
 	private String code;
 	
 	public String getCode() {

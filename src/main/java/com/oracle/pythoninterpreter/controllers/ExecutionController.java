@@ -1,7 +1,7 @@
 package com.oracle.pythoninterpreter.controllers;
 
 
-import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
+import com.oracle.pythoninterpreter.pojos.Code;
 import com.oracle.pythoninterpreter.pojos.ExecutionResult;
 import com.oracle.pythoninterpreter.interpreters.impl.InterpreterFactory;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class ExecutionController {
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/execute")
-	public Callable<ExecutionResult> execute(@RequestBody CodeToBeExecuted codeToBeExecuted, HttpSession httpSession){
-		return ()-> interpreterFactory.getInterpreter(codeToBeExecuted).execute(codeToBeExecuted);
+	public Callable<ExecutionResult> execute(@RequestBody Code code, HttpSession httpSession){
+		return ()-> interpreterFactory.getInterpreter(code).execute(code);
 	}
 }

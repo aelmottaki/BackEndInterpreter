@@ -2,7 +2,7 @@ package com.oracle.pythoninterpreter.interpreters.impl;
 
 import com.oracle.pythoninterpreter.exceptions.CodeFormatException;
 import com.oracle.pythoninterpreter.parsers.CodeExtractor;
-import com.oracle.pythoninterpreter.pojos.CodeToBeExecuted;
+import com.oracle.pythoninterpreter.pojos.Code;
 import com.oracle.pythoninterpreter.pojos.ExecutionResult;
 import com.oracle.pythoninterpreter.interpreters.CodeInterpreter;
 import org.python.util.PythonInterpreter;
@@ -17,10 +17,10 @@ public class PythonInterpreterImpl implements CodeInterpreter {
 	private CodeExtractor codeExtractor;
 	
 	@Override
-	public ExecutionResult execute(CodeToBeExecuted codeToBeExecuted) throws CodeFormatException {
+	public ExecutionResult execute(Code code) throws CodeFormatException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		pythonInterpreter.setOut(baos);
-		pythonInterpreter.exec(codeExtractor.format(codeToBeExecuted));
+		pythonInterpreter.exec(codeExtractor.format(code));
 		ExecutionResult executionResult = new ExecutionResult();
 		executionResult.setResult(new String(baos.toByteArray()).trim());
 		return executionResult;
